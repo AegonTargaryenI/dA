@@ -1,4 +1,4 @@
----linear regression---
+---linear regression--------------------------------------------
 
 scatter.smooth(x=mtcars$mpg,y=mtcars$cyl,main='LinearRegression')
 linearmodel = lm(formula = mtcars$cyl ~mpg,data=mtcars)
@@ -6,13 +6,18 @@ print(linearmodel)
 summary(linearmodel)
 
 
----logistic---
+
+
+---logistic----------------------------------------------------
 
 input <- mtcars[,c("am","cyl","hp","wt")]
 model = glm(formula = am~cyl+hp+wt,data=input,family = binomial)
 summary(model)
 
----SVM--
+
+
+
+---SVM-----------------------------------------------
 install.packages("e1701",dependencies = TRUE)
 library(“e1071”)
 data(iris)
@@ -22,7 +27,10 @@ pred = predict(svm_model,iris)
 tab = table(Predicted=pred, Actual = iris$Species)
 tab
 
----Decision Tree---
+
+
+
+---Decision Tree-------------------------------------
  (In colab)
 pip install sklearn
 from sklearn import tree
@@ -32,7 +40,11 @@ y = [ 'male','female','female']
 clf = clt.fit(x,y)
 clf.predict([[12,12,12]])
 
---HIERARCHICAL--
+
+
+
+
+--HIERARCHICAL-------------------------------------
 
 data <- dist(iris[,1:4])
 hcd = hclust(data)
@@ -40,7 +52,10 @@ den = as.dendrogram(hcd)
 plot(den)
 
 
----kMEAN---
+
+
+
+---kMEAN--------------------------------------
 
 
 # Installing Packages
@@ -80,7 +95,7 @@ cm
 
 
 
----Visualize using plot framework---
+---Visualize using plot framework---------------------------
 line bar box scatter
 par(mfrow=c(2,2))
 plot(iris)
@@ -88,7 +103,10 @@ barplot(table(iris$Sepal.Length,iris$Sepal.Width))
 boxplot(iris$Sepal.Length~iris$Sepal.Width)
 plot(x=iris$Sepal.Length)
 
----Visualize using plot framework---
+
+
+
+---Visualize using plot framework-----------------------------
 !area 2heat 3correlogram
 
 
