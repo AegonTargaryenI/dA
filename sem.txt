@@ -1,0 +1,114 @@
+---linear regression---
+
+scatter.smooth(x=mtcars$mpg,y=mtcars$cyl,main='LinearRegression')
+linearmodel = lm(formula = mtcars$cyl ~mpg,data=mtcars)
+print(linearmodel)
+summary(linearmodel)
+
+
+---logistic---
+
+input <- mtcars[,c("am","cyl","hp","wt")]
+model = glm(formula = am~cyl+hp+wt,data=input,family = binomial)
+summary(model)
+
+---SVM--
+install.packages("e1701",dependencies = TRUE)
+library(“e1071”)
+data(iris)
+svm_model<- svm(Species ~ ., data=iris,kernel="radial")
+plot(svm_model, data=iris,Petal.Width~Petal.Length,slice =list(Sepal.Width=3,Sepal.Length=4))
+pred = predict(svm_model,iris)
+tab = table(Predicted=pred, Actual = iris$Species)
+tab
+
+---Decision Tree---
+ (In colab)
+pip install sklearn
+from sklearn import tree
+clt = tree.DecisionTreeClassifier()
+x = [ [12,12,12] , [1,1,1] , [5,5,5] ]
+y = [ 'male','female','female']
+clf = clt.fit(x,y)
+clf.predict([[12,12,12]])
+
+--HIERARCHICAL--
+
+data <- dist(iris[,1:4])
+hcd = hclust(data)
+den = as.dendrogram(hcd)
+plot(den)
+
+
+---kMEAN---
+
+
+# Installing Packages
+install.packages("ClusterR")
+install.packages("cluster")
+
+# Loading package
+library(ClusterR)
+library(cluster)
+
+iris_1 <- iris[, -5]
+set.seed(240)
+kmeans.re <- kmeans(iris_1, centers = 3, nstart = 20)
+kmeans.re
+kmeans.re$cluster
+#visual command
+plot(iris_1[c("Sepal.Length", "Sepal.Width")], 
+     col = kmeans.re$cluster, 
+     main = "K-means with 3 clusters")
+## Visualizing clusters
+	
+y_kmeans <- kmeans.re$cluster
+clusplot(iris_1[, c("Sepal.Length", "Sepal.Width")],
+         y_kmeans,
+         lines = 0,
+         shade = TRUE,
+         color = TRUE,
+         labels = 2,
+         #plotchar = FALSE,
+         #span = TRUE,
+         main = "Cluster iris",
+         xlab = 'Sepal.Length',
+         ylab = 'Sepal.Width')
+# Confusion Matrix
+cm <- table(iris$Species, kmeans.re$cluster)
+cm
+
+
+
+---Visualize using plot framework---
+line bar box scatter
+par(mfrow=c(2,2))
+plot(iris)
+barplot(table(iris$Sepal.Length,iris$Sepal.Width))
+boxplot(iris$Sepal.Length~iris$Sepal.Width)
+plot(x=iris$Sepal.Length)
+
+---Visualize using plot framework---
+!area 2heat 3correlogram
+
+
+install.packages("corrplot")
+
+library(corrplot)
+
+1.area chart
+install.packages("ggplot2")
+library(ggplot2)
+df = ggplot(iris,aes(x=iris$Sepal.Length,y=iris$Sepal.Width))+geom_area()
+
+2.haetmap
+data <- scale(mtcars)
+heatmap(data)
+
+3.correlogram
+install.packages("corrplot",dependencies = TRUE)
+library(“corrplot”)
+M <- cor(mtcars)
+corrplot(M, method=”ellipse”)
+
+ 
